@@ -1,0 +1,28 @@
+From 3c29b7dc7133cf366ad154f3a70004465f4e406b Mon Sep 17 00:00:00 2001
+From: Jan Friesse <jfriesse@redhat.com>
+Date: Tue, 30 Nov 2010 14:39:54 +0100
+Subject: [PATCH] Display error if only one host is specified
+
+Resolves: tt#17
+---
+ cli.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/cli.c b/cli.c
+index 7d79ea3..a062922 100644
+--- a/cli.c
++++ b/cli.c
+@@ -423,8 +423,8 @@ parse_remote_addrs(int argc, char * const argv[], const char *port, int ip_ver,
+ 		}
+ 	}
+ 
+-	if (no_ai < 1) {
+-		warnx("at least one remote addresses should be specified");
++	if (no_ai < 2) {
++		warnx("at least two addresses must be specified (local and remote)");
+ 		usage();
+ 		exit(1);
+ 	}
+-- 
+1.7.3
+
